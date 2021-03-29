@@ -73,22 +73,22 @@ function scrabbleScore(word){
 let simpleScoreObj = {
   name: 'Simple Score',
   description: 'Each letter is worth 1 point.',
-  scoreFunction: simpleScore
+  scoringFunction: simpleScore
 };
 
 let vowelBonusScoreObj = {
   name: 'Bonus Vowels',
   description: 'Vowels are 3 pts, consonants are 1 pt.',
-  scoreFunction: vowelBonusScore
+  scoringFunction: vowelBonusScore
 };
 
-let oldScrabbleScorerObj = {
+let scrabbleScorerObj = {
   name: 'Scrabble',
   description: 'The traditional scoring algorithm.',
-  scoreFunction: scrabbleScore
+  scoringFunction: scrabbleScore
 }
 
-const scoringAlgorithms = [simpleScoreObj, vowelBonusScoreObj, oldScrabbleScorerObj]
+const scoringAlgorithms = [simpleScoreObj, vowelBonusScoreObj, scrabbleScorerObj]
 
 function scorerPrompt() {
   console.log("Which scoring algorithm would you like to use?\n\n");
@@ -97,7 +97,7 @@ function scorerPrompt() {
   }
   scorerPromptToSave = input.question("Enter 0, 1, or 2: ");
   scorerPromptToSave = Number(scorerPromptToSave)
-  console.log (`Score for '${wordToSave}': ${scoringAlgorithms[scorerPromptToSave].scoreFunction(wordToSave)}`)
+  console.log (`Score for '${wordToSave}': ${scoringAlgorithms[scorerPromptToSave].scoringFunction(wordToSave)}`)
 }
 
 function transform(oldPointStructure) {
