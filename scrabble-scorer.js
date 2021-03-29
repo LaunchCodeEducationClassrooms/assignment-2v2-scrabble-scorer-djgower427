@@ -36,7 +36,6 @@ let wordToSave = ""
 
 function initialPrompt() {
    wordToSave = input.question ("Let's play some scrabble!\n\nEnter a word to score: ");
-   oldScrabbleScorer(wordToSave);
   return wordToSave
 };
 
@@ -52,7 +51,7 @@ function vowelBonusScore(word){
   vowelBonusScoreArray = word.split('');
   letterPoints = 0
     for(let i=0; i<vowelBonusScoreArray.length ; i++){
-      if (vowelBonusScoreArray[i] === 'A' ||'E' || 'I' || 'O' || 'U'){
+      if (vowelBonusScoreArray[i] === 'A' || vowelBonusScoreArray[i] === 'E' || vowelBonusScoreArray[i] === 'I' || vowelBonusScoreArray[i] === 'O' || vowelBonusScoreArray[i] === 'U'){
         letterPoints+=3
       } else {
         letterPoints +=1
@@ -64,34 +63,45 @@ function vowelBonusScore(word){
 let scrabbleScore;
 
 let simpleScoreObj = {
-  name: 'Simple Score'
-  description: 'Each letter is worth 1 point.'
+  name: 'Simple Score',
+  description: 'Each letter is worth 1 point.',
   scoreFunction: simpleScore
 };
 
 let vowelBonusScoreObj = {
-  name: 'Bonus Vowels'
-  description: 'Vowels are 3 pts, consonants are 1 pt.'
+  name: 'Bonus Vowels',
+  description: 'Vowels are 3 pts, consonants are 1 pt.',
   scoreFunction: vowelBonusScore
 };
 
 let oldScrabbleScorerObj = {
-  name: 'Scrabble'
-  description: 'The traditional scoring algorithm.'
+  name: 'Scrabble',
+  description: 'The traditional scoring algorithm.',
   scoreFunction: oldScrabbleScorer
 }
 
-const scoringAlgorithms = [oldScrabbleScorerObj, simpleScoreObj, vowelBonusScoreObj];
+const scoringAlgorithms = [simpleScoreObj, vowelBonusScoreObj, oldScrabbleScorerObj]
 
-function scorerPrompt() {}
+function scorerPrompt() {
+  console.log("Which scoring algorithm would you like to use?\n\n");
+  for(let i = 0; i<scoringAlgorithms.length; i++){
+    console.log(`${i} – ${scoringAlgorithms[i].name}: ${scoringAlgorithms[i].description}`)
+  }
+  scorerPromptToSave = input.question("Enter 0, 1, or 2: ");
+  scorerPromptToSave = Number(scorerPromptToSave)
+  console.log (`Score for '${wordToSave}': ${scoringAlgorithms[scorerPromptToSave].scoreFunction(wordToSave)}`)
+}
 
-function transform() {};
+function transform(oldPointStructure) {
+  let newPoint
+};
 
-let newPointStructure;
+let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    initialPrompt();
-   console.log (oldScrabbleScorer(wordToSave))
+   scorerPrompt();
+   ;
 }
 
 // Don't write any code below this line //
