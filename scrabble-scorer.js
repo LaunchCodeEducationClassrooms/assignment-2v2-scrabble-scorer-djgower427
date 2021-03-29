@@ -40,13 +40,48 @@ function initialPrompt() {
   return wordToSave
 };
 
-let simpleScore;
+function simpleScore(word){
+  word = word.toUpperCase();
+  simpleScoreArray = word.split('');
+  letterPoints = simpleScoreArray.length
+  return letterPoints
+};
 
-let vowelBonusScore;
+function vowelBonusScore(word){
+  word = word.toUpperCase();
+  vowelBonusScoreArray = word.split('');
+  letterPoints = 0
+    for(let i=0; i<vowelBonusScoreArray.length ; i++){
+      if (vowelBonusScoreArray[i] === 'A' ||'E' || 'I' || 'O' || 'U'){
+        letterPoints+=3
+      } else {
+        letterPoints +=1
+      }
+    }
+  return letterPoints
+};
 
 let scrabbleScore;
 
-const scoringAlgorithms = [];
+let simpleScoreObj = {
+  name: 'Simple Score'
+  description: 'Each letter is worth 1 point.'
+  scoreFunction: simpleScore
+};
+
+let vowelBonusScoreObj = {
+  name: 'Bonus Vowels'
+  description: 'Vowels are 3 pts, consonants are 1 pt.'
+  scoreFunction: vowelBonusScore
+};
+
+let oldScrabbleScorerObj = {
+  name: 'Scrabble'
+  description: 'The traditional scoring algorithm.'
+  scoreFunction: oldScrabbleScorer
+}
+
+const scoringAlgorithms = [oldScrabbleScorerObj, simpleScoreObj, vowelBonusScoreObj];
 
 function scorerPrompt() {}
 
