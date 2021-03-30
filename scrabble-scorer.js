@@ -100,11 +100,14 @@ function scorerPrompt() {
   console.log (`Score for '${wordToSave}': ${scoringAlgorithms[scorerPromptToSave].scoringFunction(wordToSave)}`)
 }
 
-function transform(oldPointStructure) {
+function transform(object) {
   let newPointObj = {}
-  for (item in oldPointStructure){
-      for (let i = 0; i<oldPointStructure[Number(item)].length; i++){
-        newPointObj[oldPointStructure[Number(item)][i].toLowerCase()] = Number(item)
+
+  for (item in object){
+      for (let i = 0; i<object[item].length; i++){
+        let keyStorage = object[item][i]
+        keystorage = keyStorage.toLowerCase()
+        newPointObject[`${keyStorage}`] = Number(item)
       }
   }
   return newPointObj
