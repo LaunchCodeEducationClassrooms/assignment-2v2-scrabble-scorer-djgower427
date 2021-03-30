@@ -101,13 +101,15 @@ function scorerPrompt() {
 }
 
 function transform(oldPointStructure) {
-  let newPointObj = {}
-  for (item in oldPointStructure){
-      for (let i = 0; i<oldPointStructure[Number(item)].length; i++){
-        newPointObj[oldPointStructure[Number(item)][i].toLowerCase()] = Number(item)
+  let newObject = {}
+  for (items in oldPointStructure){
+      for (let i = 0; i<oldPointStructure[items].length; i++){
+        letters = oldPointStructure[items][i];
+        letters = letters.toLowerCase();
+        newObject[letters] = Number(items);
       }
   }
-  return newPointObj
+  return newObject
 };
 
 let newPointStructure = transform(oldPointStructure);
