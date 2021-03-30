@@ -65,7 +65,7 @@ function scrabbleScore(word){
   word = word.toLowerCase()
   letterPoints = 0
   for(let i = 0; i<word.length; i++){
-    letterPoints += Number(newPointStructure[word[i]])
+    letterPoints += newPointStructure[word[i]]
   }
   return letterPoints
 };
